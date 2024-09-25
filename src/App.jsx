@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import AddMenu from "./components/AddMenu";
+import TodoList from "./components/TodoList";
 
 function App() {
-   const [todos, setTodos] = useState([]);
+   const [todos, setTodos] = useState(
+      JSON.parse(localStorage.getItem("item")) || []
+   );
    const [text, setText] = useState("");
+
+   useEffect(() => {
+      localStorage.setItem(`item`, JSON.stringify(todos));
+   }, [todos]);
 
    const addTodo = () => {
       if (text.trim().length) {
@@ -12,6 +21,7 @@ function App() {
                id: new Date().toISOString(),
                text,
                completed: false,
+               date: new Date().toLocaleDateString(),
             },
          ]);
          setText("");
@@ -23,7 +33,7 @@ function App() {
    };
 
    const handleToggle = (id) => {
-      setTodos(
+      setTodos((todos) =>
          todos.map((item) => {
             if (item.id !== id) return item;
 
@@ -35,36 +45,16 @@ function App() {
       );
    };
 
-   const items = todos.map((item) => {
-      return (
-         <li key={item.id}>
-            <input
-               type="checkbox"
-               id={item.text}
-               checked={item.completed}
-               onChange={() => handleToggle(item.id)}
-            />
-            <label htmlFor={item.text}>{item.text}</label>
-            <button onClick={() => removeTodo(item.id)}>Delete</button>
-         </li>
-      );
-   });
-
    return (
-      <div className="mt-11 ml-48">
-         <label className="flex">
-            <input
-               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block p-2.5 "
-               value={text}
-               onChange={(e) => {
-                  setText(e.target.value);
-               }}
-            />
-            <button onClick={addTodo}>Add new task</button>
-         </label>
-
-         <ul>{items}</ul>
-      </div>
+      <>
+         <h1 className="text-center pt-3 uppercase">The best todo-app</h1>
+         <AddMenu addTodo={addTodo} text={text} setText={setText} />
+         <TodoList
+            todos={todos}
+            removeTodo={removeTodo}
+            handleToggle={handleToggle}
+         />
+      </>
    );
 }
 

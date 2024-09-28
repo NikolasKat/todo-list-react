@@ -8,6 +8,7 @@ const TodoItem = ({ id, text, completed, date, handleToggle, removeTodo }) => {
             <label className="flex items-center cursor-pointer relative">
                <input
                   type="checkbox"
+                  // style={{ defaultChecked: completed }}
                   checked={completed}
                   onChange={() => {
                      handleToggle(id);

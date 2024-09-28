@@ -6,6 +6,7 @@ const TodoList = ({ todos, handleToggle, removeTodo }) => {
          <TodoItem
             key={item.id}
             text={item.text}
+            completed={item.completed}
             id={item.id}
             date={item.date}
             removeTodo={removeTodo}

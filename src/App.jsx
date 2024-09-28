@@ -8,6 +8,11 @@ function App() {
       JSON.parse(localStorage.getItem("item")) || []
    );
    const [text, setText] = useState("");
+   const [status, setStatus] = useState("Set task status");
+
+   const changeStatus = (textStatus) => {
+      setStatus(textStatus);
+   };
 
    useEffect(() => {
       localStorage.setItem(`item`, JSON.stringify(todos));
@@ -22,6 +27,7 @@ function App() {
                text,
                completed: false,
                date: new Date().toLocaleDateString(),
+               status: status,
             },
          ]);
          setText("");
@@ -48,7 +54,13 @@ function App() {
    return (
       <>
          <h1 className="text-center pt-3 uppercase">The best todo-app</h1>
-         <AddMenu addTodo={addTodo} text={text} setText={setText} />
+         <AddMenu
+            addTodo={addTodo}
+            text={text}
+            setText={setText}
+            status={status}
+            changeStatus={changeStatus}
+         />
          <TodoList
             todos={todos}
             removeTodo={removeTodo}

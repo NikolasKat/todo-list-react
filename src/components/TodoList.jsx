@@ -7,6 +7,7 @@ const TodoList = ({ todos, handleToggle, removeTodo }) => {
             key={item.id}
             text={item.text}
             completed={item.completed}
+            status={item.status}
             id={item.id}
             date={item.date}
             removeTodo={removeTodo}

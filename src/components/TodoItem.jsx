@@ -1,4 +1,24 @@
-const TodoItem = ({ id, text, completed, date, handleToggle, removeTodo }) => {
+import { FcHighPriority, FcAlarmClock, FcLandscape } from "react-icons/fc";
+
+const TodoItem = ({
+   id,
+   text,
+   completed,
+   date,
+   status,
+   handleToggle,
+   removeTodo,
+}) => {
+   const icon = () => {
+      return status == "Urgent" ? (
+         <FcHighPriority />
+      ) : status == "Deferred" ? (
+         <FcAlarmClock />
+      ) : (
+         <FcLandscape />
+      );
+   };
+
    return (
       <>
          <li
@@ -34,10 +54,11 @@ const TodoItem = ({ id, text, completed, date, handleToggle, removeTodo }) => {
                </span>
                <span>
                   <span
-                     className={`block break-words max-w-[220px] min-h-1 font-medium text-lg ${
+                     className={`flex break-words max-w-[220px] min-h-1 font-medium text-lg ${
                         completed ? "line-through" : null
                      }`}
                   >
+                     <span className="mt-1.5 mr-1">{icon()}</span>
                      {text}
                   </span>
                   <span>{date}</span>

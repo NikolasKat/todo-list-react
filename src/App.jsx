@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 
 import AddMenu from "./components/AddMenu";
 import TodoList from "./components/TodoList";
+import Dropdown from "./components/Dropdown";
 
 function App() {
    const [todos, setTodos] = useState(
       JSON.parse(localStorage.getItem("item")) || []
    );
    const [text, setText] = useState("");
-   const [status, setStatus] = useState("Set task status");
+   const [status, setStatus] = useState("");
 
    const changeStatus = (textStatus) => {
       setStatus(textStatus);
@@ -19,7 +20,7 @@ function App() {
    }, [todos]);
 
    const addTodo = () => {
-      if (text.trim().length) {
+      if (text.trim().length && status) {
          setTodos([
             ...todos,
             {
@@ -61,6 +62,13 @@ function App() {
             status={status}
             changeStatus={changeStatus}
          />
+         {/* <div className="flex justify-end pt-8 mr-40">
+            <Dropdown
+               id={"sortDrop"}
+               status={status}
+               changeStatus={changeStatus}
+            />
+         </div> */}
          <TodoList
             todos={todos}
             removeTodo={removeTodo}

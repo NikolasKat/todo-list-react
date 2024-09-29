@@ -11,7 +11,7 @@ export default function Dropdown({ status, changeStatus }) {
       >
          <div>
             <MenuButton className="inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 p-2.5 text-lg font-semibold  shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-               {status}
+               {status ? status : "Set task status"}
                <SlArrowDown
                   aria-hidden="true"
                   className="-mr-0.5 h-7 w-5 text-gray-400"
@@ -27,7 +27,7 @@ export default function Dropdown({ status, changeStatus }) {
                <MenuItem>
                   <span
                      id="Urgent"
-                     className="flex align-middle px-4 py-2 text-sm text-gray-700"
+                     className="flex align-middle px-4 py-2 text-sm text-gray-700 cursor-pointer"
                      onClick={() => changeStatus("Urgent")}
                   >
                      <FcHighPriority className="mr-1 h-[19px]" /> Urgent
@@ -36,7 +36,7 @@ export default function Dropdown({ status, changeStatus }) {
                <MenuItem>
                   <span
                      id="Deferred"
-                     className="flex px-4 py-2 text-sm text-gray-700"
+                     className="flex px-4 py-2 text-sm text-gray-700 cursor-pointer"
                      onClick={() => changeStatus("Deferred")}
                   >
                      <FcAlarmClock className="mr-1 h-[22px]" /> Deferred
@@ -45,7 +45,7 @@ export default function Dropdown({ status, changeStatus }) {
                <MenuItem>
                   <span
                      id="Not a task"
-                     className="flex px-4 py-2 text-sm text-gray-700"
+                     className="flex px-4 py-2 text-sm text-gray-700 cursor-pointer"
                      onClick={() => changeStatus("Not a task")}
                   >
                      <FcLandscape className="mr-1 h-[19px]" /> Not a task

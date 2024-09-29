@@ -10,9 +10,11 @@ const AddMenu = ({ text, setText, addTodo, status, changeStatus }) => {
    return (
       <>
          <form className="flex justify-center flex-wrap mt-10">
-            {/* <select className="w-52" required> */}
-            <Dropdown status={status} changeStatus={changeStatus} />
-            {/* </select> */}
+            <Dropdown
+               // id={"addDrop"}
+               status={status}
+               changeStatus={changeStatus}
+            />
             <input
                className="text-lg block p-2.5 mx-3"
                value={text}

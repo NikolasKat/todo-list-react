@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 import AddMenu from "./components/AddMenu";
 import TodoList from "./components/TodoList";
-import Dropdown from "./components/Dropdown";
 
 function App() {
    const [todos, setTodos] = useState(
@@ -62,13 +61,6 @@ function App() {
             status={status}
             changeStatus={changeStatus}
          />
-         {/* <div className="flex justify-end pt-8 mr-40">
-            <Dropdown
-               id={"sortDrop"}
-               status={status}
-               changeStatus={changeStatus}
-            />
-         </div> */}
          <TodoList
             todos={todos}
             removeTodo={removeTodo}
